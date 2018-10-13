@@ -1,5 +1,15 @@
 const app = require('./src/server');
+require('dotenv').config()
 
-app.listen(4000, () => {
-  console.log('Running on localhost:4000');
+let host, port;
+if (process.env.IS_PROD === "true") {
+	host = '';
+	port = 80;
+} else {
+	host = ' localhost';
+	port = 4000;
+}
+
+app.listen(port, () => {
+  console.log(`Running on${host}: ${port}`);
 });

@@ -16,6 +16,7 @@ const MONGO_URI = 'mongodb://' + process.env.MONGO_USER + ':' + process.env.MONG
 if (!MONGO_URI) {
   throw new Error('You must provide a MongoLab URI');
 }
+if (process.env.IS_DEBUG === "true") console.log(`Mongostr: ${MONGO_URI}`);
 
 mongoose.Promise = global.Promise;
 try {
