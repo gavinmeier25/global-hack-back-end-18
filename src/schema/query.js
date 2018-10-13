@@ -6,8 +6,10 @@ const {
     GraphQLID,
     GraphQLNonNull
 } = graphql
-const UserType = require('./types/user')
+const UserType = require('./types/userType')
 const UserModel = require('../model/user')
+const CompanyType = require('./types/companyType')
+const CompanyModel = require('../model/user')
 
 
 const Query = new GraphQLObjectType({
@@ -17,6 +19,12 @@ const Query = new GraphQLObjectType({
             type: new GraphQLList(UserType),
             resolve(){
                 return UserModel.find({})
+            }
+        },
+        findAllCompanies : {
+            type: new GraphQLList(CompanyType),
+            resolve() {
+                return CompanyModel.find({})
             }
         }
     })

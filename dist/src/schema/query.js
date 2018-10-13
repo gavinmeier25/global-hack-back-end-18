@@ -7,8 +7,10 @@ var GraphQLObjectType = graphql.GraphQLObjectType,
     GraphQLID = graphql.GraphQLID,
     GraphQLNonNull = graphql.GraphQLNonNull;
 
-var UserType = require('./types/user');
+var UserType = require('./types/userType');
 var UserModel = require('../model/user');
+var CompanyType = require('./types/companyType');
+var CompanyModel = require('../model/user');
 
 var Query = new GraphQLObjectType({
     name: 'Query',
@@ -18,6 +20,12 @@ var Query = new GraphQLObjectType({
                 type: new GraphQLList(UserType),
                 resolve: function resolve() {
                     return UserModel.find({});
+                }
+            },
+            findAllCompanies: {
+                type: new GraphQLList(CompanyType),
+                resolve: function resolve() {
+                    return CompanyModel.find({});
                 }
             }
         };

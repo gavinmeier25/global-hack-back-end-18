@@ -9,9 +9,15 @@ var GraphQLObjectType = graphql.GraphQLObjectType,
     GraphQLInt = graphql.GraphQLInt;
 
 var mongoose = require('mongoose');
-var UserModel = require('../model/user');
 
-var UserType = require('./types/user');
+var UserModel = require('../model/user');
+var CompanyModel = require('../model/company');
+
+var UserType = require('./types/userType');
+var CompanyType = require('./types/companyType');
+var AddressType = require('./types/addressType');
+var ContactInfoType = require('./types/contactInfoType');
+var CompanyUserType = require('./types/companyUserType');
 
 var mutation = new GraphQLObjectType({
     name: 'Mutation',
@@ -31,6 +37,18 @@ var mutation = new GraphQLObjectType({
                     userName: userName,
                     password: password
                 }).save();
+            }
+        },
+        addCompany: {
+            type: CompanyType,
+            args: {
+                companyName: { type: GraphQLString },
+                address: { type: AddressType },
+                contactInfo: { type: ContactInfoType },
+                companyContacts: new GraphQLList({ type: CustomerUserType })
+            },
+            resolve: function resolve(parentValue, args) {
+                return console.log(args);
             }
         }
     }
