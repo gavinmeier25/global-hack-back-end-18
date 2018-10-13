@@ -1,6 +1,6 @@
 const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList } = graphql;
-const AddressType = require('./addressType')
+const {AddressType} = require('./addressType')
 const {ContactInfoType} = require('./contactInfoType')
 const CompanyUserType = require('./companyUserType')
 
@@ -9,7 +9,7 @@ const CompanyType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     companyName: {type: GraphQLString},
-    // address: { type: AddressType},
+    address: { type: AddressType},
     contactInfo: {type: ContactInfoType},
     // companyContacts: new GraphQLList(CompanyUserType)
 })
