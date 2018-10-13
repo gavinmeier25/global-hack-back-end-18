@@ -17,6 +17,7 @@ const mutation = new GraphQLObjectType({
     description: 'create, or update data',
     fields: {
         addUser: {
+						name: 'Test',
             type: UserType,
             args: {
                userName: { type: GraphQLString },

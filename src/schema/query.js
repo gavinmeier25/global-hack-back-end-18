@@ -4,7 +4,9 @@ const {
     GraphQLObjectType,
     GraphQLList,
     GraphQLID,
-    GraphQLNonNull
+		GraphQLNonNull,
+		GraphQLString,
+		graph
 } = graphql
 const UserType = require('./types/user')
 const UserModel = require('../model/user')
@@ -18,7 +20,16 @@ const Query = new GraphQLObjectType({
             resolve(){
                 return UserModel.find({})
             }
-        }
+				},
+				findOneUser: {
+						type: UserType,
+						args: {
+							id: { type: GraphQLString }
+						},
+						resolve(parentValue, {id}){
+								return UserModel.findById(id)
+						}
+				}
     })
 })
 

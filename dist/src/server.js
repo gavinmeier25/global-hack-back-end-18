@@ -12,8 +12,9 @@ require("babel-polyfill");
 
 var app = express();
 
-// Replace with your mongoLab URI
-var MONGO_URI = 'mongodb://localhost:27017/GlobalHack';
+// Replace with your mongoLab URI - done
+var MONGO_URI = 'mongodb://' + process.env.MONGO_USER + ':' + process.env.MONGO_PASS + '@' + process.env.MONGO_HOST + ':' + process.env.MONGO_NAME;
+
 if (!MONGO_URI) {
   throw new Error('You must provide a MongoLab URI');
 }
