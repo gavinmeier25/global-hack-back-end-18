@@ -28,6 +28,8 @@ console.log('Connected to Mongo')
 
 
 app.use(bodyParser.json());
+if (process.env.IS_DEBUG === "true") console.log(`first app passed`);
+if (process.env.IS_DEBUG === "true") console.log(`schema: ${schema}`);
 app.use('/graphql', expressGraphQL({
   schema,
   graphiql: true
