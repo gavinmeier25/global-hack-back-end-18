@@ -26,7 +26,7 @@ console.log('Connected to Mongo')
   console.err(err);
 }
 
-
+try {
 app.use(bodyParser.json());
 if (process.env.IS_DEBUG === "true") console.log(`first app passed`);
 if (process.env.IS_DEBUG === "true") console.log(`schema: ${schema}`);
@@ -34,5 +34,8 @@ app.use('/graphql', expressGraphQL({
   schema,
   graphiql: true
 }));
+} catch (err) {
+	console.log(`caught: ${err}`);
+}
 
 module.exports = app;
