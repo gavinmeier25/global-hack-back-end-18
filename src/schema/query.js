@@ -28,13 +28,13 @@ const Query = new GraphQLObjectType({
             },
             resolve(parentValue, {id}){
                 return UserModel.findById(id)
-        },
+        }},
         findAllCompanies : {
             type: new GraphQLList(CompanyType),
             resolve() {
                 return CompanyModel.find({})
             }
-    }}
+    }
     })
 })
 
