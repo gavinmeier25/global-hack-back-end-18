@@ -16,7 +16,7 @@ const UserType = require('./types/userType')
 const CompanyType = require('./types/companyType')
 const {AddressType, AddressInputType} = require('./types/addressType')
 const {ContactInfoType, ContactInfoInputType} = require('./types/contactInfoType')
-const CompanyUserType = require('./types/companyUserType')
+const {CompanyUserInputType} = require('./types/companyUserType')
 
 const mutation = new GraphQLObjectType({
     name: 'Mutation',
@@ -45,10 +45,10 @@ const mutation = new GraphQLObjectType({
                 companyName: { type: GraphQLString},
                 address: { type: AddressInputType},
                 contactInfo: { type: ContactInfoInputType},
-                // companyContacts: new GraphQLList({type: CustomerUserType})
+                companyContacts: {type: new GraphQLList(CompanyUserInputType)}
             },
             resolve(parentValue, args) {
-                return console.log(args)
+                return args
             }
         }
     }
