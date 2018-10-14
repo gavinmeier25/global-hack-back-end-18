@@ -20,10 +20,11 @@ if (process.env.IS_DEBUG === "true") console.log(`Mongostr: ${MONGO_URI}`);
 
 mongoose.Promise = global.Promise;
 try {
-mongoose.connect(MONGO_URI) 
+mongoose.connect(MONGO_URI)
+	.catch((e) => {console.log(`mongo catch: ${e}`)});
 console.log('Connected to Mongo')
 } catch (err) {
-  console.err(err);
+  console.log(`mongo try: ${err}`);
 }
 
 try {
